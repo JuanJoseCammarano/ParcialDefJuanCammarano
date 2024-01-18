@@ -1,0 +1,12 @@
+{
+  "name": "parcialdefjuancammarano",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
