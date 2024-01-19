@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+body {
+    display:flex;
+    align-items: center;
+    justify-content : center;
+    min-height: 100vh;
+}
+p{
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0px;
+}
+button{
+    height:3vh;
+    width:3vw;
+}
+/*div.img{
+    height:904 px;
+    width: 462 px;
+    top: 309 px;
+    left: 508 px;
+}
+.word-display{
+    display:flex;
+    list-style:none;
+}
+button{
+    margin:5 px;
+    padding:5 px;
+    top:50vh;
+    left:50vh;
+    height:5vh;
+    width:5vh;
+}*/
+/*div.hangman-box{
+    margin:5 px;
+    padding:5 px;
+    position:fixed;
+    top:30vh;
+    left:30vw;
+    height:1px;
+    width:1px;
+}*/
