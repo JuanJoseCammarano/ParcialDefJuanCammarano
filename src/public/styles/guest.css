@@ -20,6 +20,25 @@ button{
     height:3vh;
     width:3vw;
 }
+div.cuadro1{
+    height:55px;
+    width:50px;
+    top:335px;
+    left:312px;
+    background:white;
+    position: absolute;
+}
+div.cuadro2{
+    height:30px;
+    width:32px;
+    top:395px;
+    left:300px;
+    background:white;
+    position: absolute;
+}
+div.img{
+    position:fixed;
+}
 /*div.img{
     height:904 px;
     width: 462 px;
