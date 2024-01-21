@@ -1,8 +1,47 @@
-button{
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+body {
+    display:flex;
+    align-items: center;
+    justify-content : center;
+    min-height: 100vh;
+}
+/*button{
     height: 20px;
     width:20px;
-}
+}*/
 h1{
     text-align:center;
     top:20px;
+    position:absolute;
+}
+.palabra p{
+    text-align:center;
+    top:20px;
+    position: fixed;
+    font-size:100 px;
+}
+.word p{
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0px;
+    letter-spacing: 20px;
+}
+.hangman p{
+    bottom: 70vh;
+    left: 50vw;
+    position: absolute;
+}
+.result p{
+    top: 70vh;
+    left: 50vw;
+    position: absolute;
+}
+button{
+    height:3vh;
+    width:3vw;
 }

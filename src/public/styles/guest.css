@@ -30,41 +30,6 @@ button{
     height:3vh;
     width:3vw;
 }
-div.cuadro1{
-    height:55px;
-    width:50px;
-    top:30vh;
-    left:312px;
-    background:black;
-    position: absolute;
-}
-div.cuadro2{
-    height:30px;
-    width:32px;
-    top:395px;
-    left:301px;
-    background:white;
-    position: absolute;
-}
-div.cuadro3{
-    height:30px;
-    width:32px;
-    top:395px;
-    left:342px;
-    background:white;
-    position: absolute;
-}
-div.cuadro4{
-    height:58px;
-    width:32px;
-    top:380px;
-    left:342px;
-    background:black;
-    position: absolute;
-}
-div.img{
-    position:fixed;
-}
 /*div.img{
     height:904 px;
     width: 462 px;

@@ -37,6 +37,18 @@ io.on('connection', (socket) => {
         console.log("entra")
         socket.broadcast.emit('inicioJugador',palabra);
     })
+    socket.on('avisarAdmin',()=>{
+        socket.broadcast.emit('desplegarAdmin');
+    })
+    socket.on('letra',(letra)=>{
+        socket.broadcast.emit('letra',letra);
+    })
+    socket.on('letraCorrecta',(letra,i)=>{
+        socket.broadcast.emit('letraCorrecta',letra,i);
+    })
+    socket.on('letraIncorrecta',(totalErrores)=>{
+        socket.broadcast.emit('letraIncorrecta',totalErrores);
+    })
 });
 /*io.on('disconnection', (socket) =>{
     console.log("Recibido");
