@@ -117,25 +117,6 @@ socket.on('inicioJugador',(palabra)=>{
             button.addEventListener("click", function () {
                 const letra = button.innerHTML;
                 socket.emit('letra',letra);
-                /*if (word.includes(letter)&& !guess.innerHTML.includes(letter)){
-                    console.log("acierto");
-                    for (let i = 0; i < word.length; i++){
-                        if (word[i] === letter){
-                            guess.innerText = guess.innerText.replaceAt(i,letter);
-                            if (guess.innerText===word) result.innerText="Ganaste!"
-                        }
-                    }  
-                }
-                else{
-                    errores++;
-                    hangman.innerText=dibujo(errores);
-                    if (errores==6) {
-                        result.innerText="Perdiste!"
-                        while (keyboardDiv.firstChild){
-                            keyboardDiv.removeChild(keyboardDiv.firstChild);
-                        }
-                    }
-                }*/
             })
     }
     socket.on('letraCorrecta',(letter,j)=>{

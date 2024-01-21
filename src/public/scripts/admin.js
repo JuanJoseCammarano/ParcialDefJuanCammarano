@@ -157,11 +157,6 @@ socket.on('desplegarAdmin',()=>{
     underScores+="_"
     }
     guess.innerText = underScores;
-    /*const input = document.createElement("input")
-    const button = document.createElement("button");
-    button.innerText = "enviar";
-    keyboardDiv.appendChild(input);
-    keyboardDiv.appendChild(button);*/
     let pista;
     button.addEventListener("click", function () {
         pista=input.value;
