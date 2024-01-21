@@ -1,6 +1,7 @@
 //const { arrayBuffer } = require("stream/consumers");
 const keyboardDiv = document.querySelector(".keyboard");
 let word = "PAW";
+let errores = 0;
 String.prototype.replaceAt = function(index, replacement) {
     if (index >= this.length) {
         return this.valueOf();
@@ -9,7 +10,7 @@ String.prototype.replaceAt = function(index, replacement) {
     return this.substring(0, index) + replacement + this.substring(index + 1);
 }
 let underScores ='';
-const guess = document.querySelector('p');
+const guess = document.querySelector('.word p');
 for (let i=0; i<word.length; i++){
 underScores+="_"
 }
@@ -23,15 +24,98 @@ for (let i= 97; i <= 122; i++){
             if (word.includes(letter) && !guess.innerHTML.includes(letter)){
                 for (let i = 0; i < word.length; i++){
                     if (word[i] === letter){
-                        /*stringAnterior=guess.innerText.substring(0,i);
-                        stringRestante=guess.innerText.substring(i+1,word.length-1);
-                        guess.innerHTML = stringAnterior + letter + stringRestante;*/
                         guess.innerText = guess.innerText.replaceAt(i,letter);
                     }
+                    else errores++;
                 }  
             } 
         })
 }
+const dibujo = function(errores){
+    switch (errores) {
+        case 0:
+            return (`
+____
+|    /   |
+|   
+|    
+|    
+|    
+|
+|_____
+          `)
+        case 1:
+            return (`
+|     /   |
+|        (_)
+|    
+|    
+|    
+|
+|_____
+         `)
+        case 2:
+            return (`
+            |     /   |
+            |        (_)
+            |           |
+            |           |
+            |    
+            |    
+            |
+            |_____
+          `)
+        case 3:
+            return(`
+         ____
+        |/        |
+        |        (_)
+        |        \\|
+        |         |
+        |    
+        |
+        |_____
+            `)
+        case 4:
+            return(`
+         ____
+        |/        |
+        |        (_)
+        |        \\|/
+        |            |
+        |    
+        |
+        |_____
+                       `) 
+        case 5:
+            return (`
+            ____
+            |/        |
+            |        (_)
+            |        \\|/
+            |            |
+            |        /
+            |
+            |_____
+            `)
+        case 6:
+            return (`
+            ____
+            |/        |
+            |        (_)
+            |        \\|/
+            |            |
+            |        /  \
+            |
+            |_____
+            `)
+    } 
+}
+const hangman = document.querySelector('.hangman p');
+hangman.innerText=dibujo(6);
+/*const p = document.createElement("p");
+p.innerText = dibujo(errores);
+hangman.appendChild(p);*/
 //const underScores = (word) => {
     //const palabra = document.createElement('p')
     /*const p = document.createElement("p");

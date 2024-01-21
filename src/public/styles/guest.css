@@ -10,11 +10,16 @@ body {
     justify-content : center;
     min-height: 100vh;
 }
-p{
+.word p{
     font-size: 20px;
     text-align: center;
     margin: 20px 0px;
     letter-spacing: 20px;
+}
+.hangman p{
+    bottom: 70vh;
+    left: 50vw;
+    position: absolute;
 }
 button{
     height:3vh;
@@ -23,17 +28,33 @@ button{
 div.cuadro1{
     height:55px;
     width:50px;
-    top:335px;
+    top:30vh;
     left:312px;
-    background:white;
+    background:black;
     position: absolute;
 }
 div.cuadro2{
     height:30px;
     width:32px;
     top:395px;
-    left:300px;
+    left:301px;
     background:white;
+    position: absolute;
+}
+div.cuadro3{
+    height:30px;
+    width:32px;
+    top:395px;
+    left:342px;
+    background:white;
+    position: absolute;
+}
+div.cuadro4{
+    height:58px;
+    width:32px;
+    top:380px;
+    left:342px;
+    background:black;
     position: absolute;
 }
 div.img{
