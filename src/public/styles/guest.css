@@ -21,6 +21,11 @@ body {
     left: 50vw;
     position: absolute;
 }
+.result p{
+    top: 70vh;
+    left: 50vw;
+    position: absolute;
+}
 button{
     height:3vh;
     width:3vw;

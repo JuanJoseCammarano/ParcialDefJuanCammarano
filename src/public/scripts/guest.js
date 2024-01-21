@@ -15,6 +15,8 @@ for (let i=0; i<word.length; i++){
 underScores+="_"
 }
 guess.innerText = underScores;
+const hangman = document.querySelector('.hangman p');
+const result = document.querySelector('.result p');
 for (let i= 97; i <= 122; i++){
         const button = document.createElement("button");
         button.innerText = String.fromCharCode(i).toUpperCase();
@@ -25,9 +27,19 @@ for (let i= 97; i <= 122; i++){
                 for (let i = 0; i < word.length; i++){
                     if (word[i] === letter){
                         guess.innerText = guess.innerText.replaceAt(i,letter);
+                        if (guess.innerText===word) result.innerText="Ganaste!"
                     }
-                    else errores++;
                 }  
+            }
+            else{
+                errores++;
+                hangman.innerText=dibujo(errores);
+                if (errores==6) {
+                    result.innerText="Perdiste!"
+                    while (keyboardDiv.firstChild){
+                        keyboardDiv.removeChild(keyboardDiv.firstChild);
+                    }
+                }
             } 
         })
 }
@@ -62,7 +74,6 @@ ____
             |           |
             |    
             |    
-            |
             |_____
           `)
         case 3:
@@ -111,8 +122,7 @@ ____
             `)
     } 
 }
-const hangman = document.querySelector('.hangman p');
-hangman.innerText=dibujo(6);
+hangman.innerText=dibujo(0);
 /*const p = document.createElement("p");
 p.innerText = dibujo(errores);
 hangman.appendChild(p);*/
