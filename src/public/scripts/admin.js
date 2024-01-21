@@ -18,12 +18,6 @@ let word='';
 const erroresText= document.querySelector(".errores p")
 const botonIniciar = document.createElement("button")
 botonIniciar.disabled=true;
-function delay(time){
-	return new Promise(resolve => setTimeout(resolve, time));
-}
-async function start(){
-	await delay(2000);
-}
 const dibujo = function(errores){
     switch (errores) {
         case 0:
@@ -108,7 +102,6 @@ socket.on('connect', () => {
     async function fetchWord() {
         const response = await fetch('https://pow-3bae6d63ret5.deno.dev/word')
         const data = await response.json();
-        console.log(data.word);
         palabra=data.word;
         textPalabra.innerText=palabra;
     }
@@ -123,7 +116,6 @@ socket.on('connect', () => {
     })
     function iniciar (){
         palabra=textPalabra.innerText;
-        console.log(palabra);
         socket.emit('inicioAdmin', palabra)
     }
     botonIniciar.addEventListener("click", function () {
@@ -131,8 +123,10 @@ socket.on('connect', () => {
     })
 })
 socket.on('activarIniciar',()=>{
-    console.log("entra");
     botonIniciar.disabled=false;
+})
+socket.on('desactivarIniciar',()=>{
+    botonIniciar.disabled=true;
 })
 socket.on('desplegarAdmin',()=>{
     while (Iniciar.firstChild){
@@ -144,7 +138,6 @@ socket.on('desplegarAdmin',()=>{
     keyboardDiv.appendChild(input)
     keyboardDiv.appendChild(button)
     word = textPalabra.innerText.toUpperCase();
-    console.log(word);
     let errores = 0;
     String.prototype.replaceAt = function(index, replacement) {
         if (index >= this.length) {
@@ -166,7 +159,6 @@ socket.on('desplegarAdmin',()=>{
 })
 socket.on('letra',(letter)=>{
     if (word.includes(letter)&& !guess.innerText.includes(letter)){
-        console.log("acierto");
         for (let i = 0; i < word.length; i++){
             if (word[i] === letter){
                 socket.emit('letraCorrecta',letter,i);

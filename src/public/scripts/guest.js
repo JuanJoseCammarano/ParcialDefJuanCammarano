@@ -1,4 +1,3 @@
-//const { arrayBuffer } = require("stream/consumers");
 socket = io('http://localhost:8000');
 const esperando = document.querySelector(".esperando p");
 const pistaText = document.querySelector(".pista p");
@@ -95,7 +94,6 @@ socket.on('inicioJugador',(palabra)=>{
     esperando.innerText="";
     const keyboardDiv = document.querySelector(".keyboard");
     word = palabra.toUpperCase();
-    console.log(word);
     let errores = 0;
     String.prototype.replaceAt = function(index, replacement) {
         if (index >= this.length) {
@@ -120,7 +118,6 @@ socket.on('inicioJugador',(palabra)=>{
             })
     }
     socket.on('letraCorrecta',(letter,j)=>{
-        console.log("entro");
         guess.innerText = guess.innerText.replaceAt(j,letter);
         if (guess.innerText===word) {
             result.innerText="Ganaste!"
@@ -133,7 +130,6 @@ socket.on('inicioJugador',(palabra)=>{
     })
     socket.on('letraIncorrecta',(totalErrores)=>{
         errores++;
-        console.log(errores);
         hangman.innerText=dibujo(errores);
         erroresText.innerText="Errores: "+errores;
         if (totalErrores==6) {
@@ -146,7 +142,6 @@ socket.on('inicioJugador',(palabra)=>{
         }
     })
     socket.on('pista',(pista)=>{
-        console.log(pista);
         pistaText.innerText="Pista: "+pista;
     })
     hangman.innerText=dibujo(0);

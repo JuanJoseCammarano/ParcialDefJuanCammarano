@@ -12,26 +12,20 @@ const io = require('socket.io')(server, {
 });
 io.on('connection', (socket) => {
     ids.push(socket.id);
-    console.log(ids);
-    socket.on('enviar-palabra-todos',(palabra,id)=>{
-        console.log(palabra,id);
-    })
+    socket.emit('usersSize',ids)
     socket.on('disconnect', () => {
-        console.log(socket.id);
         for (i=0;i<ids.length;i++){
             if (ids[i]===socket.id) ids.splice(i,1);
         }
-        console.log(ids)
-        socket.emit('usersSize', ids)
+        if (ids.length>2) {
+            socket.broadcast.emit('activarIniciar') 
+        }else socket.broadcast.emit('desactivarIniciar')
     });
     socket.emit('usersIds', ids)
-    console.log(ids.length)
     if (ids.length>2) {
-        console.log("entro");
         socket.broadcast.emit('activarIniciar') 
-    }
+    }else socket.broadcast.emit('desactivarIniciar')
     socket.on('inicioAdmin',(palabra)=>{
-        console.log("entra")
         socket.broadcast.emit('inicioJugador',palabra);
     })
     socket.on('avisarAdmin',()=>{
@@ -48,7 +42,6 @@ io.on('connection', (socket) => {
     })
     socket.on('pista',(pista)=>{
         socket.broadcast.emit('pista',pista);
-        console.log(pista);
     })
     socket.on('nuevaPartida',()=>{
         socket.broadcast.emit('nuevaPartidaI');
