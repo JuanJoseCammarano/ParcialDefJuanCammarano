@@ -31,10 +31,12 @@ io.on('connection', (socket) => {
         /*id=stringify(socket.id)
         ids=ids.filter(id);
         console.log(ids);*/
-        socket.emit('role')
     });
     socket.emit('usersIds', ids)
-    socket.emit('role')
+    socket.on('inicioAdmin',(palabra)=>{
+        console.log("entra")
+        socket.broadcast.emit('inicioJugador',palabra);
+    })
 });
 /*io.on('disconnection', (socket) =>{
     console.log("Recibido");
