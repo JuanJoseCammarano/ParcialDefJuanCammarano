@@ -18,6 +18,12 @@ let word='';
 const erroresText= document.querySelector(".errores p")
 const botonIniciar = document.createElement("button")
 botonIniciar.disabled=true;
+function delay(time){
+	return new Promise(resolve => setTimeout(resolve, time));
+}
+async function start(){
+	await delay(2000);
+}
 const dibujo = function(errores){
     switch (errores) {
         case 0:
@@ -176,6 +182,10 @@ socket.on('letra',(letter)=>{
                         keyboardDiv.removeChild(keyboardDiv.firstChild);
                     }
                     deNuevo.appendChild(botonDeNuevo);
+                    botonDeNuevo.addEventListener("click", function () {
+                        window.location.href='../admin.html';
+                        socket.emit('nuevaPartida')
+                    })
                 }
             }
         }
@@ -192,7 +202,8 @@ socket.on('letra',(letter)=>{
             }
             deNuevo.appendChild(botonDeNuevo);
             botonDeNuevo.addEventListener("click", function () {
-                window.location.href='../homepage.html';
+                window.location.href='../admin.html';
+                socket.emit('nuevaPartida')
             })
         }
     }

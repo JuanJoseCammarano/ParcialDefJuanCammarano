@@ -59,6 +59,9 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('pista',pista);
         console.log(pista);
     })
+    socket.on('nuevaPartida',()=>{
+        socket.broadcast.emit('nuevaPartidaI');
+    })
 });
 /*io.on('disconnection', (socket) =>{
     console.log("Recibido");

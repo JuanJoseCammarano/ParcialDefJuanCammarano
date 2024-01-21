@@ -169,4 +169,7 @@ socket.on('inicioJugador',(palabra)=>{
         pistaText.innerText="Pista: "+pista;
     })
     hangman.innerText=dibujo(0);
+    socket.on('nuevaPartidaI',()=>{
+        window.location.href='../homepage.html';
+    })
 })
