@@ -1,4 +1,5 @@
 socket = io('http://localhost:8000');
+let idsUsers = [];
 const Iniciar = document.querySelector(".botonIniciar");
 const cambiar = document.querySelector(".botonCambiar");
 const textPalabra = document.querySelector("h1");
@@ -8,9 +9,15 @@ const result = document.querySelector('.result p');
 const keyboardDiv = document.querySelector(".keyboard");
 const input = document.createElement("input")
 const button = document.createElement("button");
-button.innerText = "enviar";
+const deNuevo = document.querySelector(".deNuevo");
+const botonDeNuevo = document.createElement("button");
+botonDeNuevo.innerText = "Jugar de nuevo"
+button.innerText = "Enviar Pista";
 let errores=0;
 let word='';
+const erroresText= document.querySelector(".errores p")
+const botonIniciar = document.createElement("button")
+botonIniciar.disabled=true;
 const dibujo = function(errores){
     switch (errores) {
         case 0:
@@ -100,11 +107,10 @@ socket.on('connect', () => {
         textPalabra.innerText=palabra;
     }
     fetchWord();
-    const botonIniciar = document.createElement("button")
     botonIniciar.innerText = "iniciar"
     Iniciar.appendChild(botonIniciar);
     const botonCambiar = document.createElement("button")
-    botonCambiar.innerText = "cambiar"
+    botonCambiar.innerText = "Cambiar Palabra"
     cambiar.appendChild(botonCambiar);
     botonCambiar.addEventListener("click", function () {
         fetchWord();
@@ -117,6 +123,10 @@ socket.on('connect', () => {
     botonIniciar.addEventListener("click", function () {
         iniciar();
     })
+})
+socket.on('activarIniciar',()=>{
+    console.log("entra");
+    botonIniciar.disabled=false;
 })
 socket.on('desplegarAdmin',()=>{
     while (Iniciar.firstChild){
@@ -149,6 +159,7 @@ socket.on('desplegarAdmin',()=>{
     let pista;
     button.addEventListener("click", function () {
         pista=input.value;
+        socket.emit('pista',pista);
     })
     hangman.innerText=dibujo(0);
 })
@@ -164,6 +175,7 @@ socket.on('letra',(letter)=>{
                     while (keyboardDiv.firstChild){
                         keyboardDiv.removeChild(keyboardDiv.firstChild);
                     }
+                    deNuevo.appendChild(botonDeNuevo);
                 }
             }
         }
@@ -172,11 +184,16 @@ socket.on('letra',(letter)=>{
         errores++;
         hangman.innerText=dibujo(errores);
         socket.emit('letraIncorrecta',errores);
+        erroresText.innerText="Errores: "+errores;
         if (errores==6) {
             result.innerText="Gana el ahorcado!"
             while (keyboardDiv.firstChild){
                 keyboardDiv.removeChild(keyboardDiv.firstChild);
             }
+            deNuevo.appendChild(botonDeNuevo);
+            botonDeNuevo.addEventListener("click", function () {
+                window.location.href='../homepage.html';
+            })
         }
     }
 })

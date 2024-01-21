@@ -31,8 +31,14 @@ io.on('connection', (socket) => {
         /*id=stringify(socket.id)
         ids=ids.filter(id);
         console.log(ids);*/
+        socket.emit('usersSize', ids)
     });
     socket.emit('usersIds', ids)
+    console.log(ids.length)
+    if (ids.length>2) {
+        console.log("entro");
+        socket.broadcast.emit('activarIniciar') 
+    }
     socket.on('inicioAdmin',(palabra)=>{
         console.log("entra")
         socket.broadcast.emit('inicioJugador',palabra);
@@ -48,6 +54,10 @@ io.on('connection', (socket) => {
     })
     socket.on('letraIncorrecta',(totalErrores)=>{
         socket.broadcast.emit('letraIncorrecta',totalErrores);
+    })
+    socket.on('pista',(pista)=>{
+        socket.broadcast.emit('pista',pista);
+        console.log(pista);
     })
 });
 /*io.on('disconnection', (socket) =>{

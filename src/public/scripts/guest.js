@@ -1,7 +1,11 @@
 //const { arrayBuffer } = require("stream/consumers");
 socket = io('http://localhost:8000');
 const esperando = document.querySelector(".esperando p");
+const pistaText = document.querySelector(".pista p");
+const deNuevo = document.querySelector(".deNuevo p");
 let errores=0;
+let word='';
+const erroresText= document.querySelector(".errores p")
 const dibujo = function(errores){
     switch (errores) {
         case 0:
@@ -82,7 +86,7 @@ ____
     } 
 }
 socket.on('connect', () => {
-    socket.emit('guest');
+    socket.emit('invitado');
     esperando.innerText="esperando a que comience el anfitrion" 
 });
 const guess = document.querySelector('.word p');
@@ -90,7 +94,7 @@ socket.on('inicioJugador',(palabra)=>{
     socket.emit('avisarAdmin');
     esperando.innerText="";
     const keyboardDiv = document.querySelector(".keyboard");
-    let word = palabra.toUpperCase();
+    word = palabra.toUpperCase();
     console.log(word);
     let errores = 0;
     String.prototype.replaceAt = function(index, replacement) {
@@ -142,19 +146,27 @@ socket.on('inicioJugador',(palabra)=>{
             while (keyboardDiv.firstChild){
                 keyboardDiv.removeChild(keyboardDiv.firstChild)
             }
-            console.log("ganaste");
+            pistaText.innerText="";
+            deNuevo.innerText="Esperando al anfitrion para iniciar de nuevo"
         }
     })
     socket.on('letraIncorrecta',(totalErrores)=>{
         errores++;
         console.log(errores);
         hangman.innerText=dibujo(errores);
+        erroresText.innerText="Errores: "+errores;
         if (totalErrores==6) {
-            result.innerText="Perdiste!"
+            result.innerText="Perdiste! La palabra era "+word;
             while (keyboardDiv.firstChild){
                 keyboardDiv.removeChild(keyboardDiv.firstChild);
             }
+            pistaText.innerText="";
+            deNuevo.innerText="Esperando al anfitrion para iniciar de nuevo"
         }
+    })
+    socket.on('pista',(pista)=>{
+        console.log(pista);
+        pistaText.innerText="Pista: "+pista;
     })
     hangman.innerText=dibujo(0);
 })

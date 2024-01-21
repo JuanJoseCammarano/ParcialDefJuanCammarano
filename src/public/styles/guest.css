@@ -16,6 +16,16 @@ body {
     margin: 20px 0px;
     letter-spacing: 20px;
 }
+input{
+    height:40px;
+    width:40px;
+}
+.pista p{
+    text-align:center;
+    top:20px;
+    position: fixed;
+    font-size:100 px;
+}
 .hangman p{
     bottom: 70vh;
     left: 50vw;
@@ -23,6 +33,16 @@ body {
 }
 .result p{
     top: 70vh;
+    left: 50vw;
+    position: absolute;
+}
+.deNuevo p{
+    top: 90vh;
+    left: 50vw;
+    position: absolute;
+}
+.errores p{
+    top: 90vh;
     left: 50vw;
     position: absolute;
 }
