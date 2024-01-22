@@ -11,7 +11,13 @@ APIS utilizadas:
 Fetch para la palabra a adivinar
 Socket.io(webSockets)
 
-Instrucciones de ejecución: Presionar "node src/index.js en la terminal"
+Instrucciones de ejecución (en terminal):
+npm init --yes
+npm install express
+npm install socket.io
+node src/index.js 
+Aparecerá en la terminal "Listening on port 8000"
+Copiar este puerto en el navegador (localhost:8000)
 
 Nota1: El puerto del servidor por predeterminado es el 8000.
 Nota2: En caso de que el boton "iniciar" no se desactive/active, esperar unos segundos 
